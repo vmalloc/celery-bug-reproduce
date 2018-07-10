@@ -1,0 +1,13 @@
+version: '3'
+services:
+  app:
+    build: .
+    command: python -m app.app
+    ports:
+      - 8000:8000
+  rabbitmq:
+    image: rabbitmq
+  worker:
+    build: .
+
+    command: python -m celery worker -A app.tasks -b amqp://guest:guest@rabbitmq --loglevel=DEBUG -E -B -Q celery

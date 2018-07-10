@@ -1,0 +1,2 @@
+Flask
+Celery>=4.2
